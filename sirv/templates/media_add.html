@@ -1,0 +1,135 @@
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    function setProfiles(){
+            var data = {}
+            data['action'] = 'sirv_get_profiles';
+
+            jQuery.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: data,
+                async: false,
+            }).done(function(response){
+                jQuery('#gallery-profile').empty();
+                jQuery('#gallery-profile').append(jQuery(response));
+            });
+
+        }
+
+        setProfiles();
+});
+</script>
+
+<div class="loading-ajax">
+            <span class="sirv-loading-icon"></span>
+        </div>
+        <div class="content">
+            <div class="selection-content">
+                <div class="sirv-items-container">
+                    <div class="nav">
+                        <div class="tools-panel">
+                            <div class="btn btn-success create-folder">
+                                <span>New folder...</span>
+                            </div>
+                            <div class="btn btn-success fileinput-button">
+                                <span>Upload images...</span>
+                                <input id="filesToUpload" data-current-folder="/" type="file" name="files[]" multiple="">
+                            </div>
+                            <a class="btn btn-success b-close">Cancel</a>
+                        </div>
+                        <ol class="breadcrumb">
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="sirv-dirs">
+                        <ul class="items-list" id="dirs"></ul>
+                    </div>
+                    <div class="sirv-spins">
+                        <ul class="items-list" id="spins"></ul>
+                    </div>
+                    <div class="sirv-images">
+                        <ul class="items-list" id="images"></ul>
+                    </div>
+                </div>
+                <div class="selected-images">
+                    <div class="selected-images-container">
+                    <div class="selection-info">
+                        <span class="count"> 1 selected</span>
+                        <a class="clear-selection" href="#">Clear</a>
+                    </div>
+                    <div class="selection-view">
+                        <ul class="selected-miniatures-container">
+                            <!-- <li class="selected-miniature">
+                                <img "selected-miniature-img" src="" />
+                            </li> -->
+                        </ul>
+                    </div>
+                    <div class="create-gallery">
+                        <div class="btn btn-success">
+                            <span>Continue...</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-creation-content">
+                    
+				<a class="b-close"><span class="dashicons dashicons-no-alt"></span></a>
+
+                <div class="gallery-images">
+                    <ul class="gallery-container">
+                    </ul>
+                </div>
+                <div class="sidebar-right">
+                    <div class="gallery-options">                    
+                        <h1>Gallery otions</h1>
+
+                        <h2>Embed as:</h2>
+                        <input class="sirv-gallery-type" type="radio" name="embeded-as" value="gallery-zoom-flag" checked />Image Zoom<br />
+                        <input class="sirv-gallery-type" type="radio" name="embeded-as" value="gallery-flag" />Image gallery<br />
+                        <input class="sirv-gallery-type" type="radio" name="embeded-as" value="plain-image" />Plain image<br />
+                        <input class="sirv-gallery-type" type="radio" name="embeded-as" value="360-spin" disabled />360 spin<br />
+                        
+                        <h2>Options:</h2>
+                        <!-- <label><input id="gallery-flag" type="checkbox">Insert as gallery</label>
+                        <label><input id="gallery-zoom-flag" type="checkbox" disabled />Use Sirv Zoom</label> -->
+                        <label><input id="gallery-link-img" type="checkbox" disabled />Link to big image</label>
+                        <label><input id="gallery-show-caption" type="checkbox" />Show caption</label>
+
+                        <label>Width:
+                        <input id="gallery-width" type="text" size="5" value="auto" /></label>
+
+                        <label>Align:
+                        <select id="gallery-align">
+                            <option value="">-</option>
+                            <option value="sirv-left">Left</option>
+                            <option value="sirv-right">Right</option>
+                            <option value="sirv-center">Center</option>
+                        </select></label>
+                        
+                        <label>Profile:
+                        <select id="gallery-profile">
+                        </select></label>
+                        <a href="https://my.sirv.com/#/browse/Profiles" class="create-profile" target="_blank">Create profile [↗]</a>
+                        
+                        <label>Thumbnail height:
+                        <input id="gallery-thumbs-height" type="text" value="50" size="5" /></label>
+                        
+                        <!--
+                        <label>Extra styles:
+                        <input id="gallery-styles" type="text" size="5" disabled /></label>
+                        -->
+                        <div class="gallery-controls">
+                        <div class="btn btn-success select-images">
+                            <span>Back</span>
+                        </div>
+                        <div class="btn btn-success insert">
+                            <span>Insert into page</span>
+                        </div>
+                    </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
